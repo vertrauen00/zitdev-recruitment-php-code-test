@@ -2,31 +2,19 @@
 
 namespace App\Service;
 
+use App\Util\Loggers\LoggerInterface;
+
 class AppLogger
 {
-    const TYPE_LOG4PHP = 'log4php';
-
     private $logger;
 
-    public function __construct($type = self::TYPE_LOG4PHP)
+    public function __construct(LoggerInterface $logger)
     {
-        if ($type == self::TYPE_LOG4PHP) {
-            $this->logger = \Logger::getLogger("Log");
-        }
+        $this->logger = $logger;
+    }
+    public function getLogger()
+    {
+        return $this->logger;
     }
 
-    public function info($message = '')
-    {
-        $this->logger->info($message);
-    }
-
-    public function debug($message = '')
-    {
-        $this->logger->debug($message);
-    }
-
-    public function error($message = '')
-    {
-        $this->logger->error($message);
-    }
 }
