@@ -55,10 +55,29 @@ class ProductHandlerTest extends TestCase
         ],
     ];
 
-    public function testGetTotalPrice(ProductHandler $ProductHandler)
+    public function testGetTotalPrice()
     {
-
+        $ProductHandler = new ProductHandler;
         $totalPrice = $ProductHandler->getTotalPrice($this->products);
         $this->assertEquals(143, $totalPrice);
+    }
+    public function testGetFilterdProducts()
+    {
+        $ProductHandler = new ProductHandler;
+        $filter = ['sort' => SORT_DESC, 'type' => ['Dessert']];
+        $filteredProducts = $ProductHandler->getFilteredProducts($this->products, $filter);
+
+
+        $this->assertEquals(40, $filteredProducts[0]['price']);
+        $this->assertEquals(35, $filteredProducts[1]['price']);
+    }
+    public function testConvertProductsCreateTime()
+    {
+        $ProductHandler = new ProductHandler;
+        $newProducts = $ProductHandler->convertProductsCreateTime($this->products);
+        foreach($this->products as $key => $product) {
+            $this->assertEquals(strtoTime($product['create_at']), $newProducts[$key]['create_at']);
+        }
+
     }
 }

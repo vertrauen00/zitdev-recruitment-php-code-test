@@ -23,13 +23,13 @@ class ProductHandler
 
     /**
      * 获取筛选后的商品
-     * getSortedProducts
+     * getFilteredProducts
      * @access
      * @param array $products
      * @param array $filter
      * @return array
      */
-    public function getFilterdProducts(array $products, array $filter):array
+    public function getFilteredProducts(array $products, array $filter):array
     {
 //        $filter = ['sort' => SORT_ASC, 'type' => ['dessert']];
         $sort = $filter['sort'];

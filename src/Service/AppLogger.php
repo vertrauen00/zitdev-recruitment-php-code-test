@@ -6,11 +6,14 @@ use App\Util\Loggers\LoggerInterface;
 
 class AppLogger
 {
+    /**
+     * @var  $logger LoggerInterface
+     */
     private $logger;
 
-    public function __construct(LoggerInterface $logger)
+    public function __construct($logger)
     {
-        $this->logger = $logger;
+        $this->logger = new $logger;
     }
     public function getLogger()
     {
